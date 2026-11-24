@@ -93,7 +93,7 @@
   {
    "id": "d2",
    "title": "Пример документов - Италия (альбом)",
-   "publish_at": "2026-11-24T20:30:00+05:30",
+   "publish_at": "2026-11-24T21:20:00+05:30",
    "kind": "post",
    "text": "🇮🇹 Example: Italian work authorization documents 📄\n\n1️⃣ Receipt - the employer's application in the Italian Ministry of Interior system\n2️⃣ Letter from the Immigration Office (Sportello Unico) - sent to the Italian Embassy in New Delhi, after which the worker applies for the visa 🛂\n\n⚠️ Know what is real:\nIn Italy the process ALWAYS starts with the employer's application. No application = no work visa. Anyone promising \"Italy visa in 2 weeks\" without it is lying ❌\n\n📌 Save this post to check any offer you get.\n\n⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.\n\n🔒 Personal data hidden for privacy.\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code",
    "images": [
@@ -106,17 +106,17 @@
    "already_published": false
   },
   {
-   "id": "m1",
-   "title": "Мем 1 - «вчера»",
-   "publish_at": "2026-11-24T21:30:00+05:30",
+   "id": "s1",
+   "title": "Пример визы - Польша",
+   "publish_at": "2026-11-24T22:30:00+05:30",
    "kind": "post",
-   "text": "😂 Every recruiter has heard this at least once...\n\nEmployers, we love you. But we still need a few weeks for visas 🛂😅\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code",
+   "text": "🇵🇱 Example: Polish national work visa (type D) 🛂\n\nHow to recognise a real one:\n✔️ It is a sticker in the passport, not a paper printout\n✔️ Type \"D\" - national visa\n✔️ Issued by the Polish consulate\n✔️ Purpose of issue (\"CEL WYDANIA\") printed on it\n\n⚠️ Be careful: a Schengen tourist visa is NOT a work visa. Anyone selling \"work on a tourist visa\" is putting you at risk ❌\n\n📌 Save this post to check any offer you get.\n\n⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.\n\n🔒 Personal data hidden for privacy.\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code",
    "images": [
-    "meme_1.jpg"
+    "visa_pl.jpg"
    ],
    "poll": null,
    "vacancy": null,
-   "note": "",
+   "note": "Имя, номера, MRZ и лицо на фото визы заблюрены.",
    "already_published": false
   },
   {
@@ -176,20 +176,6 @@
    "already_published": false
   },
   {
-   "id": "s1",
-   "title": "Пример визы - Польша",
-   "publish_at": "2026-11-25T17:00:00+05:30",
-   "kind": "post",
-   "text": "🇵🇱 Example: Polish national work visa (type D) 🛂\n\nHow to recognise a real one:\n✔️ It is a sticker in the passport, not a paper printout\n✔️ Type \"D\" - national visa\n✔️ Issued by the Polish consulate\n✔️ Purpose of issue (\"CEL WYDANIA\") printed on it\n\n⚠️ Be careful: a Schengen tourist visa is NOT a work visa. Anyone selling \"work on a tourist visa\" is putting you at risk ❌\n\n📌 Save this post to check any offer you get.\n\n⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.\n\n🔒 Personal data hidden for privacy.\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code",
-   "images": [
-    "visa_pl.jpg"
-   ],
-   "poll": null,
-   "vacancy": null,
-   "note": "Имя, номера, MRZ и лицо на фото визы заблюрены.",
-   "already_published": false
-  },
-  {
    "id": "d1",
    "title": "Пример контракта - Турция",
    "publish_at": "2026-11-25T19:00:00+05:30",
@@ -216,6 +202,20 @@
    "poll": null,
    "vacancy": null,
    "note": "Публикуй двумя фото одним альбомом. Страна не указана: на фото аэропорт Еревана.",
+   "already_published": false
+  },
+  {
+   "id": "m1",
+   "title": "Мем 1 - «вчера»",
+   "publish_at": "2026-11-25T21:30:00+05:30",
+   "kind": "post",
+   "text": "😂 Every recruiter has heard this at least once...\n\nEmployers, we love you. But we still need a few weeks for visas 🛂😅\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code",
+   "images": [
+    "meme_1.jpg"
+   ],
+   "poll": null,
+   "vacancy": null,
+   "note": "",
    "already_published": false
   },
   {
