@@ -3,9 +3,9 @@ Description=Northgate content panel and Telegram publisher
 After=network-online.target
 
 [Service]
-WorkingDirectory=/opt/northgate/bot
-EnvironmentFile=/opt/northgate/bot/.env
-ExecStart=/usr/bin/python3 /opt/northgate/bot/app.py
+WorkingDirectory=/opt/northgate/repo/bot
+EnvironmentFile=/opt/northgate/.env
+ExecStart=/usr/bin/python3 /opt/northgate/repo/bot/app.py
 Restart=always
 RestartSec=5
 

@@ -117,12 +117,17 @@ def publish(p):
             c.execute("update state set status='published', published_at=?, error=null where id=?",
                       (datetime.now(timezone.utc).isoformat(), p["id"]))
 
+APP_MTIME = os.path.getmtime(__file__)
+
 def worker():
     while True:
         try:
             subprocess.run(["git", "-C", CONTENT_DIR, "pull", "-q", "--ff-only"], timeout=60, capture_output=True)
         except Exception:
             pass
+        if os.path.getmtime(__file__) != APP_MTIME:
+            print("bot code updated, restarting", flush=True)
+            os._exit(0)
         try:
             now = datetime.now(timezone.utc)
             with lock:
