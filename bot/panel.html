@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northgate · контент-план</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0c203e;--navy2:#142d52;--gold:#c9a54c;--ink:#1b2430;--muted:#6b7684;--bg:#f4f2ec;--card:#fff;--line:#e3dfd4;--ok:#2f7d4f;--warn:#b7791f;--err:#b3261e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:22px 20px;position:sticky;top:0;z-index:5}
+.wrap{max-width:1000px;margin:0 auto}
+header h1{font-family:'Libre Baskerville',serif;color:var(--gold);margin:0 0 4px;font-size:22px}
+header p{margin:0;color:#c9d2e0;font-size:13px}
+.stats{display:flex;gap:14px;margin-top:10px;font-size:13px;color:#c9d2e0;flex-wrap:wrap}
+.stats b{color:#fff}
+main{padding:20px}
+.day{font-weight:700;font-size:15px;margin:22px 0 10px;color:var(--navy)}
+.post{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;display:grid;grid-template-columns:240px 1fr}
+.post.published{opacity:.6}
+.imgcol{background:#e9e5da;padding:10px;display:flex;flex-direction:column;gap:6px}
+.imgcol img{width:100%;border-radius:8px;display:block}
+.noimg{border:2px dashed #c8c1ae;border-radius:8px;padding:24px 10px;text-align:center;color:var(--muted);font-size:12px}
+.body{padding:14px 16px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.when{font-weight:700}.when small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.t-draft{background:#ece8dd;color:var(--ink)}.t-ready{background:#e3f2e8;color:var(--ok)}.t-pub{background:var(--navy);color:var(--gold)}.t-err{background:#fbe3e1;color:var(--err)}
+h2{margin:0;font-size:16px}
+pre{white-space:pre-wrap;word-wrap:break-word;font-family:inherit;font-size:13.5px;line-height:1.5;background:#faf9f5;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0;max-height:260px;overflow:auto}
+.note{font-size:12.5px;background:#fff7e6;border-left:3px solid var(--warn);padding:7px 10px;border-radius:4px}
+.err{font-size:12.5px;background:#fbe3e1;border-left:3px solid var(--err);padding:7px 10px;border-radius:4px}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.kb{font-size:12px;color:var(--muted)}
+button{font:inherit;font-size:13.5px;font-weight:700;border:0;border-radius:9px;padding:10px 14px;cursor:pointer}
+.ready{background:var(--gold);color:var(--navy)}.ready.on{background:var(--ok);color:#fff}
+.sec{background:#ece8dd;color:var(--ink)}
+.danger{background:#fff;border:1px solid var(--err);color:var(--err)}
+@media(max-width:700px){.post{grid-template-columns:1fr}.imgcol{flex-direction:row;overflow:auto}.imgcol img{width:140px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>NORTHGATE · контент-план</h1>
+  <p>Нажми «Готов к публикации», и бот сам опубликует пост в назначенное время во все каналы с кнопкой связи с менеджером. Если время поста уже прошло, он уйдёт в течение минуты.</p>
+  <div class="stats" id="stats"></div>
+</div></header>
+<main><div class="wrap" id="list">Загрузка…</div></main>
+<script>
+const fmt=(d,tz)=>new Intl.DateTimeFormat('ru-RU',{timeZone:tz,weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(d);
+const dayKey=d=>new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Kolkata',weekday:'long',day:'numeric',month:'long'}).format(d);
+const esc=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let confirmId=null;
+async function api(path,body){const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});return r.json()}
+async function load(){
+  const d=await api('/api/posts'); const L=document.getElementById('list'); L.innerHTML='';
+  const c={pub:0,ready:0,draft:0,err:0};
+  let lastDay='';
+  d.posts.forEach(p=>{
+    const t=new Date(p.publish_at);
+    const st=p.status==='published'?'pub':p.status==='error'?'err':p.ready?'ready':'draft'; c[st]++;
+    const k=dayKey(t); if(k!==lastDay){lastDay=k;const h=document.createElement('div');h.className='day';h.textContent=k[0].toUpperCase()+k.slice(1);L.appendChild(h)}
+    const lbl={pub:'Опубликован',ready:'Ждёт времени',draft:'Черновик',err:'Ошибка'}[st];
+    const imgs=p.images.length?p.images.map(i=>`<img src="/img/${i}" loading="lazy">`).join(''):(p.kind==='poll'?'<div class="noimg">📊 Опрос</div>':'<div class="noimg">Без картинки</div>');
+    const body=p.kind==='poll'?`❓ ${esc(p.poll.question)}\n\n${p.poll.options.map(o=>'• '+esc(o)).join('\n')}`:esc(p.text);
+    const el=document.createElement('article'); el.className='post'+(st==='pub'?' published':'');
+    el.innerHTML=`<div class="imgcol">${imgs}</div><div class="body">
+      <div class="top"><div class="when">${fmt(t,'Asia/Kolkata')} IST<small>${fmt(t,'Europe/Warsaw')} по Варшаве</small></div><span class="tag t-${st}">${lbl}</span></div>
+      <h2>${esc(p.title)}</h2>
+      ${p.note?`<div class="note">${esc(p.note)}</div>`:''}
+      ${p.error?`<div class="err">${esc(p.error)}</div>`:''}
+      <pre>${body}</pre>
+      <div class="kb">Кнопка: ${p.vacancy?'✉️ Apply for '+p.vacancy:'✉️ Contact manager'}</div>
+      <div class="btn-row">${st==='pub'?'':`
+        <button class="ready ${p.ready?'on':''}" data-a="ready">${p.ready?'✓ Готов к публикации':'Готов к публикации'}</button>
+        <button class="${confirmId===p.id?'danger':'sec'}" data-a="now">${confirmId===p.id?'Точно отправить сейчас?':'Отправить сейчас'}</button>
+        <button class="sec" data-a="mark">Уже выложил вручную</button>`}
+      </div></div>`;
+    el.querySelectorAll('button').forEach(b=>b.onclick=async()=>{
+      if(b.dataset.a==='ready'){await api('/api/ready',{id:p.id,ready:!p.ready});}
+      else if(b.dataset.a==='mark'){await api('/api/mark_published',{id:p.id});}
+      else{ if(confirmId!==p.id){confirmId=p.id;return load();} confirmId=null; b.textContent='Отправляю…'; const r=await api('/api/publish_now',{id:p.id}); if(!r.ok) alertBox(r.error);}
+      load();
+    });
+    L.appendChild(el);
+  });
+  document.getElementById('stats').innerHTML=`<span>Каналы: <b>${d.channels.join(', ')}</b></span><span>Опубликовано: <b>${c.pub}</b></span><span>Ждут времени: <b>${c.ready}</b></span><span>Черновики: <b>${c.draft}</b></span>${c.err?`<span>Ошибки: <b>${c.err}</b></span>`:''}`;
+}
+function alertBox(m){const n=document.createElement('div');n.className='err';n.textContent=m;document.getElementById('list').prepend(n)}
+load(); setInterval(()=>{if(!confirmId)load()},30000);
+</script>
+</body>
+</html>
