@@ -1,7 +1,8 @@
 #!/bin/bash
 # Asks for the bot token (hidden input), finds the channels where the bot is admin, writes /opt/northgate/.env and starts the service.
 set -e
-read -s -p "Paste the NEW bot token and press Enter: " TOKEN; echo
+TOKEN="$1"; [ -z "$TOKEN" ] && read -p "Paste the NEW bot token and press Enter: " TOKEN
+TOKEN=$(echo "$TOKEN" | tr -d "[:space:]")
 PASS=$(python3 -c "import secrets;print(secrets.token_urlsafe(9))")
 CH=$(TOKEN="$TOKEN" python3 - <<'PY'
 import os,requests
