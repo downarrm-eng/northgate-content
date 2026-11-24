@@ -6,6 +6,7 @@ PASS=$(python3 -c "import secrets;print(secrets.token_urlsafe(9))")
 CH=$(TOKEN="$TOKEN" python3 - <<'PY'
 import os,requests
 t=os.environ["TOKEN"]; ids={}
+requests.get(f"https://api.telegram.org/bot{t}/deleteWebhook",timeout=30)
 r=requests.get(f"https://api.telegram.org/bot{t}/getUpdates",params={"allowed_updates":'["my_chat_member","channel_post"]'},timeout=30).json()
 if not r.get("ok"): raise SystemExit("Token error: "+str(r.get("description")))
 for u in r["result"]:
@@ -16,6 +17,7 @@ for i,tl in ids.items(): print(f"# {i} {tl}",file=open("/dev/stderr","w"))
 print(",".join(str(i) for i in ids))
 PY
 )
+if [ -z "$CH" ]; then echo; echo "No channels found. Write any short message in EACH of the 3 channels (you can delete it later), then run this script again."; exit 1; fi
 cat > /opt/northgate/.env <<ENV
 BOT_TOKEN=$TOKEN
 CHANNELS=$CH
