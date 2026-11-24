@@ -9,7 +9,8 @@ from datetime import datetime, timezone
 from functools import wraps
 
 import requests
-from flask import Flask, Response, jsonify, request, send_from_directory
+import hashlib
+from flask import Flask, Response, jsonify, redirect, request, send_from_directory, session
 
 def env(k, d=None):
     v = os.environ.get(k, d)
@@ -140,19 +141,48 @@ def worker():
 
 # ---------- web panel ----------
 app = Flask(__name__)
+app.secret_key = hashlib.sha256(("northgate-session:" + BOT_TOKEN + PANEL_PASSWORD).encode()).digest()
+app.config.update(SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax", PERMANENT_SESSION_LIFETIME=60*60*24*90)
+
+LOGIN_HTML = """<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northgate · вход</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0c203e;font-family:system-ui,sans-serif}
+form{background:#fff;padding:28px;border-radius:16px;width:300px;display:flex;flex-direction:column;gap:12px}h1{margin:0 0 6px;font-size:20px;color:#0c203e}
+input{font:inherit;padding:11px 12px;border:1px solid #ccc;border-radius:9px}button{font:inherit;font-weight:700;padding:12px;border:0;border-radius:9px;background:#c9a54c;color:#0c203e;cursor:pointer}
+.e{color:#b3261e;font-size:13px}</style></head><body><form method="post" action="/login"><h1>NORTHGATE · вход</h1>{err}
+<input name="u" placeholder="Логин" autocomplete="username" required><input name="p" type="password" placeholder="Пароль" autocomplete="current-password" required>
+<button>Войти</button></form></body></html>"""
+
+def logged_in():
+    if session.get("ok"):
+        return True
+    a_ = request.authorization
+    return bool(a_ and a_.username == PANEL_USER and a_.password == PANEL_PASSWORD)
 
 def auth(f):
     @wraps(f)
     def w(*a, **k):
-        a_ = request.authorization
-        if not a_ or a_.username != PANEL_USER or a_.password != PANEL_PASSWORD:
-            return Response("Login required", 401, {"WWW-Authenticate": 'Basic realm="Northgate"'})
+        if not logged_in():
+            return jsonify(ok=False, error="login required"), 401
         return f(*a, **k)
     return w
 
+@app.get("/login")
+def login_page():
+    return LOGIN_HTML.replace("{err}", "")
+
+@app.post("/login")
+def login_post():
+    if request.form.get("u") == PANEL_USER and request.form.get("p") == PANEL_PASSWORD:
+        session.permanent = True
+        session["ok"] = True
+        return redirect("/")
+    time.sleep(1)
+    return LOGIN_HTML.replace("{err}", '<div class="e">Неверный логин или пароль</div>'), 401
+
 @app.get("/")
-@auth
 def index():
+    if not logged_in():
+        return redirect("/login")
     return send_from_directory(os.path.dirname(__file__), "panel.html")
 
 @app.get("/img/<path:fn>")
