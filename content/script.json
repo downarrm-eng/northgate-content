@@ -1,0 +1,125 @@
+{
+ "steps": [
+  {
+   "id": "s1",
+   "stage": "1. Первый ответ",
+   "when": "Кандидат написал впервые (любое сообщение, «hi», нажал кнопку)",
+   "images": [],
+   "files": [],
+   "text": "Hi! 👋 Thanks for contacting Northgate Workforce 🇪🇺\n\n📍 Our office: Sofia, Bulgaria 🇧🇬🇪🇺\nYou can visit us anytime, or do everything online - as you like 🙂\n\nTell us a bit about yourself 👇\n1️⃣ Your name and age\n2️⃣ Where do you live? (city, state)\n3️⃣ Which vacancy do you like? (code, for example #64)\n\n📄 If you have a CV - send it too!\n\n✅ 0% commission",
+   "ru": "Приветствие, офис в Софии, имя и возраст, где живёт, какая вакансия, CV, 0% комиссии."
+  },
+  {
+   "id": "s2",
+   "stage": "2. Опыт работы",
+   "when": "После ответа на первое сообщение",
+   "images": [],
+   "files": [],
+   "text": "Thank you, [Name]! 🙌\nWhat work do you do now, and how many years of experience do you have? 💼",
+   "ru": "Чем занимается и сколько лет опыта."
+  },
+  {
+   "id": "s3",
+   "stage": "3. Паспорт",
+   "when": "После ответа про опыт",
+   "images": [],
+   "files": [],
+   "text": "Great 👍 Do you have a valid passport? 🛂\nIf yes - until which year is it valid?",
+   "ru": "Есть ли действующий паспорт и до какого года."
+  },
+  {
+   "id": "s4",
+   "stage": "4. Английский",
+   "when": "После ответа про паспорт",
+   "images": [],
+   "files": [],
+   "text": "Last question 🙂 How is your English?\nBasic / Good / Fluent 🗣",
+   "ru": "Уровень английского."
+  },
+  {
+   "id": "s5",
+   "stage": "5. Анкета получена",
+   "when": "Кандидат ответил на все вопросы",
+   "images": [],
+   "files": [],
+   "text": "Thank you, [Name]! ✅ We have everything we need.\nWe'll check your profile and get back to you soon 🤝",
+   "ru": "Спасибо, всё получили, проверим и свяжемся."
+  },
+  {
+   "id": "s6",
+   "stage": "6. Отобран + договор",
+   "when": "Менеджер решил взять кандидата. Прикрепить картинку и PDF договора",
+   "images": [],
+   "files": [
+    "Northgate_Candidate_Agreement.pdf"
+   ],
+   "note": "Картинка: промт «YOUR PROCESS STARTS» (1 Agreement → 2 Official fees → 3 Visa → 4 Flight). Пришли готовую - добавлю сюда.",
+   "text": "Congratulations, [Name]! 🎉✅\n\nYou are selected for vacancy #[code] - [position], [country] 🇪🇺\nWelcome to Northgate Workforce 🤝\n\n📄 Please find your Candidate Agreement attached.\nRead it carefully, fill in your details, sign it and send it back here ✍️\n\n✅ 0% commission - you pay only the official government and visa fees, as written in the agreement.\n\nAfter we receive your signed agreement, we will send you the invoice for the official fees 🧾",
+   "ru": "Поздравление, вакансия, договор во вложении (заполнить, подписать, вернуть), 0% комиссии, после договора пришлём счёт."
+  },
+  {
+   "id": "s7",
+   "stage": "7. Счёт на оплату",
+   "when": "Кандидат прислал подписанный договор. Прикрепить счёт",
+   "images": [],
+   "files": [],
+   "note": "Шаблон счёта (Invoice) ещё не сделан - нужны реквизиты для оплаты.",
+   "text": "Thank you, [Name]! ✅ Your signed agreement is received.\n\n🧾 Please find attached the invoice for the official fees:\n🏛 Government fee (work permit): 72 EUR\n🛂 Visa fee: [amount] EUR\n\nAs soon as the payment is received, we submit your documents and book your visa appointment 📅✈️\n\nYou will get an official receipt for each payment.\nAny questions - just write here 🤝",
+   "ru": "Договор получен, во вложении счёт: госпошлина 72 EUR и визовый сбор. После оплаты подаём документы и записываем на визу."
+  },
+  {
+   "id": "x1",
+   "stage": "Не подходит",
+   "when": "Профиль не подходит под открытые вакансии",
+   "images": [],
+   "files": [],
+   "text": "Thank you, [Name] 🙏\nAt the moment your profile doesn't match our open vacancies.\nWe saved your details - follow our channel, new vacancies are posted regularly 🔔",
+   "ru": "Пока не подходите, данные сохранили, следите за каналом."
+  },
+  {
+   "id": "x2",
+   "stage": "Молчит 48 часов",
+   "when": "Кандидат не ответил 2 дня. Отправить один раз",
+   "images": [],
+   "files": [],
+   "text": "Hi [Name] 👋 Just checking - are you still interested in vacancy #[code]?\nReply when you are ready 🙂",
+   "ru": "Напоминание один раз."
+  },
+  {
+   "id": "f1",
+   "stage": "FAQ: зарплата",
+   "when": "«What is the salary?»",
+   "images": [],
+   "files": [],
+   "text": "The salary is written in the vacancy post #[code] 💰\nPlease answer our questions first, so we can check if you match ✅",
+   "ru": "Зарплата в посте вакансии, сначала ответьте на вопросы."
+  },
+  {
+   "id": "f2",
+   "stage": "FAQ: гарантия",
+   "when": "«Is the job guaranteed?»",
+   "images": [],
+   "files": [],
+   "text": "No honest agency can guarantee a job 🙂\nWe select candidates carefully, and if you are selected, every step comes with official documents 📄",
+   "ru": "Честно: гарантий нет, отбор и официальные документы."
+  },
+  {
+   "id": "f3",
+   "stage": "FAQ: офис",
+   "when": "«Where are you located? Can I visit?»",
+   "images": [],
+   "files": [],
+   "text": "Our office is in Sofia, Bulgaria 🇧🇬🇪🇺 You are welcome to visit us.\nBut it's not necessary - the whole process can be done online 🙂",
+   "ru": "Офис в Софии, можно приехать, но всё можно онлайн."
+  },
+  {
+   "id": "f4",
+   "stage": "FAQ: сколько платить",
+   "when": "«How much do I pay?» (до отбора)",
+   "images": [],
+   "files": [],
+   "text": "We take 0% commission ✅\nAll details about the process are explained step by step once you are selected 🙂",
+   "ru": "0% комиссии, детали после отбора (сборы не упоминаем до отбора)."
+  }
+ ]
+}

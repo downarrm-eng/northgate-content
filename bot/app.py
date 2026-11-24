@@ -185,6 +185,23 @@ def index():
         return redirect("/login")
     return send_from_directory(os.path.dirname(__file__), "panel.html")
 
+@app.get("/script")
+def script_page():
+    if not logged_in():
+        return redirect("/login")
+    return send_from_directory(os.path.dirname(__file__), "script.html")
+
+@app.get("/api/script")
+@auth
+def api_script():
+    with open(os.path.join(CONTENT_DIR, "script.json"), encoding="utf-8") as f:
+        return jsonify(json.load(f))
+
+@app.get("/files/<path:fn>")
+@auth
+def files(fn):
+    return send_from_directory(os.path.join(CONTENT_DIR, "files"), fn, as_attachment=True)
+
 @app.get("/img/<path:fn>")
 @auth
 def img(fn):

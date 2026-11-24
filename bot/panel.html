@@ -37,11 +37,13 @@ button{font:inherit;font-size:13.5px;font-weight:700;border:0;border-radius:9px;
 .sec{background:#ece8dd;color:var(--ink)}
 .danger{background:#fff;border:1px solid var(--err);color:var(--err)}
 @media(max-width:700px){.post{grid-template-columns:1fr}.imgcol{flex-direction:row;overflow:auto}.imgcol img{width:140px}}
+.nav{display:flex;gap:8px;margin:8px 0 10px}.nav a{color:#c9d2e0;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid #2c4670}.nav a.on{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <h1>NORTHGATE · контент-план</h1>
+  <nav class="nav"><a class="on" href="/">Контент-план</a><a href="/script">Скрипт общения</a></nav>
   <p>Нажми «Готов к публикации», и бот сам опубликует пост в назначенное время во все каналы с кнопкой связи с менеджером. Если время поста уже прошло, он уйдёт в течение минуты.</p>
   <div class="stats" id="stats"></div>
 </div></header>

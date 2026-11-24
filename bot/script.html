@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northgate · скрипт общения</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0c203e;--gold:#c9a54c;--ink:#1b2430;--muted:#6b7684;--bg:#f4f2ec;--line:#e3dfd4;--warn:#b7791f}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:20px;position:sticky;top:0;z-index:5}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-family:'Libre Baskerville',serif;color:var(--gold);margin:0;font-size:22px}
+header p{margin:4px 0 0;color:#c9d2e0;font-size:13px}
+.nav{display:flex;gap:8px;margin:8px 0 6px}.nav a{color:#c9d2e0;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid #2c4670}.nav a.on{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+main{padding:20px}
+.flow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.flow a{font-size:12px;font-weight:600;text-decoration:none;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 11px}
+.group{font-weight:700;color:var(--navy);margin:22px 0 10px;font-size:15px}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;display:grid;grid-template-columns:220px 1fr}
+.side{background:#e9e5da;padding:12px;display:flex;flex-direction:column;gap:8px}
+.side img{width:100%;border-radius:8px}
+.noimg{border:2px dashed #c8c1ae;border-radius:8px;padding:20px 8px;text-align:center;color:var(--muted);font-size:12px}
+.file{display:block;background:var(--navy);color:var(--gold);text-decoration:none;font-size:12px;font-weight:700;padding:9px;border-radius:8px;text-align:center}
+.body{padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+h2{margin:0;font-size:16px}
+.when{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;background:#fff7e6;border-left:3px solid var(--warn);padding:7px 10px;border-radius:4px}
+pre{white-space:pre-wrap;word-wrap:break-word;font-family:inherit;font-size:13.5px;line-height:1.5;background:#faf9f5;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0}
+.ru{font-size:12.5px;color:var(--muted)}
+button{font:inherit;font-size:13px;font-weight:700;border:0;border-radius:9px;padding:9px 14px;cursor:pointer;background:var(--gold);color:var(--navy);align-self:flex-start}
+@media(max-width:700px){.step{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>NORTHGATE · скрипт общения</h1>
+  <nav class="nav"><a href="/">Контент-план</a><a class="on" href="/script">Скрипт общения</a></nav>
+  <p>Этапы переписки с кандидатом: текст, картинки и файлы к каждому сообщению. [Name], [code] и т.п. заменить перед отправкой.</p>
+</div></header>
+<main><div class="wrap"><div class="flow" id="flow"></div><div id="list">Загрузка…</div></div></main>
+<script>
+const esc=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+async function load(){
+  const d=await (await fetch('/api/script')).json(); const L=document.getElementById('list'), F=document.getElementById('flow'); L.innerHTML=''; F.innerHTML='';
+  let last='';
+  d.steps.forEach(s=>{
+    const g=/^\d/.test(s.stage)?'Основная воронка':s.stage.startsWith('FAQ')?'Частые вопросы':'Особые случаи';
+    if(g!==last){last=g;const h=document.createElement('div');h.className='group';h.textContent=g;L.appendChild(h)}
+    const a=document.createElement('a');a.href='#'+s.id;a.textContent=s.stage;F.appendChild(a);
+    const imgs=(s.images||[]).map(i=>`<img src="/img/${i}">`).join('');
+    const files=(s.files||[]).map(f=>`<a class="file" href="/files/${encodeURIComponent(f)}">📎 ${esc(f)}</a>`).join('');
+    const el=document.createElement('article');el.className='step';el.id=s.id;
+    el.innerHTML=`<div class="side">${imgs||'<div class="noimg">Без картинки</div>'}${files}</div>
+      <div class="body"><h2>${esc(s.stage)}</h2><div class="when">Когда: ${esc(s.when)}</div>
+      ${s.note?`<div class="note">${esc(s.note)}</div>`:''}<pre></pre><div class="ru">🇷🇺 ${esc(s.ru)}</div><button>Скопировать текст</button></div>`;
+    el.querySelector('pre').textContent=s.text;
+    const b=el.querySelector('button');b.onclick=async()=>{try{await navigator.clipboard.writeText(s.text);b.textContent='Скопировано ✓'}catch(e){const r=document.createRange();r.selectNodeContents(el.querySelector('pre'));getSelection().removeAllRanges();getSelection().addRange(r);b.textContent='Выделено - нажми Cmd+C'}setTimeout(()=>b.textContent='Скопировать текст',2000)};
+    L.appendChild(el);
+  });
+}
+load(); setInterval(load,30000);
+</script>
+</body>
+</html>
