@@ -1,0 +1,640 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northgate · Facebook пакет</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: practical brand handbook for a page admin
+   IDEA: a printed posting checklist in Northgate navy and gold
+   PICTURE: real cover + profile, then each post as it will look
+   COLOUR and TYPE: navy #132447, gold #d6af54, Montserrat
+   LAYOUT: one column of numbered post cards */
+:root{color-scheme:light dark;--bg:light-dark(#f4f1ea,#0d1830);--card:light-dark(#fff,#16264a);--ink:light-dark(#132447,#eef1f7);--mut:light-dark(#5b6680,#a9b3c9);--gold:#d6af54;--navy:#132447;--line:light-dark(#e4dfd3,#2a3b63)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Montserrat,system-ui,sans-serif;overflow-x:clip}
+header{background:var(--navy);color:#fff;padding:clamp(24px,4vw,48px) max(5vw,16px)}
+header h1{font-size:clamp(28px,5vw,44px);line-height:1.08;margin:0 0 10px;font-weight:800}
+header p{margin:4px 0;color:#d9dfec;max-width:720px}
+header b{color:var(--gold)}
+.hero{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:14px;margin-top:22px;max-width:1000px}
+.hero img{width:100%;border-radius:12px;display:block;border:2px solid var(--gold)}
+.hero .cap{font-size:13px;color:#c5cde0;margin-top:4px}
+main{max-width:880px;margin:0 auto;padding:24px 16px 80px}
+h2{font-size:26px;margin:34px 0 12px}
+.rules{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.rules li{margin:6px 0}
+.row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.k{font-weight:700;font-size:14px;color:var(--mut)}
+pre.t{white-space:pre-wrap;font:15px/1.5 Montserrat,system-ui,sans-serif;margin:8px 0;background:light-dark(#faf8f3,#101d3b);border-radius:10px;padding:12px;border:1px solid var(--line)}
+button.cp{background:var(--navy);color:#fff;border:2px solid var(--gold);border-radius:10px;padding:10px 18px;font:600 15px Montserrat,sans-serif;cursor:pointer;min-height:44px}
+button.cp.ok{background:var(--gold);color:var(--navy)}
+.post{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0}
+.post.isdone{opacity:.55}
+.num{width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:18px;border:2px solid var(--gold)}
+.post h3{margin:6px 0 2px;font-size:19px}
+.meta{font-size:13px;color:var(--mut)}
+.pin{background:var(--gold);color:var(--navy);font-size:12px;padding:2px 8px;border-radius:6px;vertical-align:middle}
+.media{display:grid;gap:6px;margin:10px 0}
+.m1{grid-template-columns:minmax(0,1fr)}.m2{grid-template-columns:repeat(2,minmax(0,1fr))}.m4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.media img,.media video{width:100%;border-radius:10px;display:block;max-height:520px;object-fit:contain;background:#000}
+.m1 img{max-width:460px}.media video{max-width:360px}
+.media figure{margin:0}.dl{display:inline-block;margin-top:6px;padding:8px 14px;border-radius:10px;border:2px solid var(--gold);color:var(--ink);text-decoration:none;font-weight:600;font-size:14px}
+.zip{display:inline-block;margin-top:16px;background:var(--gold);color:var(--navy);padding:12px 20px;border-radius:12px;font-weight:800;text-decoration:none}
+.done{margin-left:14px;font-size:14px;color:var(--mut);cursor:pointer}
+@media(max-width:600px){.hero{grid-template-columns:minmax(0,1fr)}.post{grid-template-columns:minmax(0,1fr)}.num{width:36px;height:36px;font-size:15px}}
+</style></head><body>
+<header><h1>Northgate Workforce · пакет для Facebook-страницы</h1>
+<p>Всё готово к загрузке: оформление страницы и <b>29 постов</b> по порядку. У каждого поста есть картинки и текст с кнопкой «Копировать».</p>
+<a class="zip" href="fb/Northgate_Facebook_Pack.zip" download>⬇️ Скачать всё одним архивом</a>
+<div class="hero"><div><img src="fb/img/00_cover_photo.jpg" alt="Cover"><a class="dl" style="color:#fff" href="fb/img/00_cover_photo.jpg" download>⬇️ Скачать обложку</a><div class="cap">Обложка (cover), 1640×856</div></div><div><img src="fb/img/00_profile_picture.png" alt="Profile"><a class="dl" style="color:#fff" href="fb/img/00_profile_picture.png" download>⬇️ Скачать</a><div class="cap">Фото профиля, 1080×1080</div></div></div></header>
+<main>
+<h2>Как выкладывать</h2>
+<ol class="rules">
+<li>Сначала оформи страницу: обложка, фото профиля и тексты из блока ниже.</li>
+<li>Выкладывай посты строго по номерам, от 1 до 29. В Facebook новые посты встают наверх, поэтому последним (№29) идёт приветствие. Его закрепи: ··· → «Pin to top».</li>
+<li>Если у поста несколько фото, загружай их одним постом, альбомом.</li>
+<li>Между постами делай паузу хотя бы 3-5 минут, чтобы Facebook не посчитал это спамом. Можно запланировать посты в Meta Business Suite.</li>
+<li>Под каждой картинкой есть кнопка «Скачать». На телефоне можно просто зажать картинку и сохранить.</li>
+<li>Для рекламы вакансий выбирай категорию <b>Employment</b> (Special Ad Category).</li>
+</ol>
+<h2>Оформление страницы</h2>
+<div class="row"><div class="k">Название страницы</div><pre class="t">Northgate Workforce</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">Категория</div><pre class="t">Employment Agency</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">Bio / Intro (до 101 символа)</div><pre class="t">Legal jobs in Europe 🇪🇺 Real contracts · Work permit &amp; visa support · Office in Sofia 🇧🇬</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">Город</div><pre class="t">Sofia, Bulgaria</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">Кнопка на странице</div><pre class="t">Send message</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">Website / ссылка</div><pre class="t">https://t.me/+IcbxNukEGVwyZjA0</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">Часы работы</div><pre class="t">Mon-Fri 09:00-18:00</pre><button class="cp">Копировать</button></div><div class="row"><div class="k">About (подробное описание)</div><pre class="t">Northgate Workforce is a recruitment agency with an office in Sofia, Bulgaria 🇧🇬🇪🇺
+
+We connect workers with employers in Europe and beyond: Greece, Italy, Turkey, Belarus, Poland and more.
+
+✔️ Real contracts - 1 year and longer
+✔️ Work permit and visa support, step by step
+✔️ Only official government and visa fees
+✔️ Strict selection - we check every candidate
+
+To apply: send us a message with your CV + vacancy code 📩</pre><button class="cp">Копировать</button></div>
+<h2>Посты по порядку</h2>
+<article class="post" id="p1"><div class="num">1</div><div class="body">
+<h3>Команда в офисе</h3><div class="meta">Файлы: office_team.jpg</div>
+<div class="media m1"><figure><img src="fb/img/office_team.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_team.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🏛 The Northgate Workforce team 🤝
+
+The people behind every vacancy you see on this page 👆
+
+Every day here:
+🤝 Direct work with employers in Europe and beyond
+🔍 Careful selection - candidate by candidate
+📄 Contracts and work permits prepared properly
+🛂 Every selected person guided to the visa and the flight ✈️
+
+What you will never get from us:
+❌ Promises of a job for everyone
+❌ People sent without checking
+
+That&#x27;s why employers keep working with us - and that&#x27;s why our selection is strict. One vacancy = from 10 to 100 places, hundreds of applicants. We choose ✅
+
+📩 Any questions - send us a message
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p1"> Выложено</label></div></article><article class="post" id="p2"><div class="num">2</div><div class="body">
+<h3>Вакансия #62 Греция</h3><div class="meta">Файлы: vac_gr.jpg</div>
+<div class="media m1"><figure><img src="fb/img/vac_gr.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/vac_gr.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🌿 VACANCY #62 | Farm Workers - Greece 🇬🇷
+
+📍 Location: Crete
+🏢 Employer: vegetable and olive farm
+👥 Places: 15 only
+💰 Salary: €900-1,000 / month (net)
+🏠 Accommodation: provided free by employer
+⏰ Schedule: 6 days/week, 8 hours/day
+📄 Contract: 1 year (extension possible)
+
+✅ Requirements:
+• Age: 20-55
+• Farm experience preferred
+• Basic English
+• Physically fit, ready for outdoor work ☀️
+
+⚠️ 15 places - hundreds of applications expected. Selection is strict. We decide who goes.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #JobsInGreece #FarmJobs</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p2"> Выложено</label></div></article><article class="post" id="p3"><div class="num">3</div><div class="body">
+<h3>Пример документа Греция</h3><div class="meta">Файлы: doc_gr.jpg</div>
+<div class="media m1"><figure><img src="fb/img/doc_gr.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/doc_gr.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🇬🇷 Example: Greek work approval document 📄
+
+This is what a real document from the Greek authorities looks like 🏛
+👉 Decentralised Administration of Attica - approval for seasonal work (loaders and warehouse workers), sent to the Greek Consulate in New Delhi.
+
+⚠️ Be careful! Many fake &quot;agents&quot; show photoshopped papers and take money 💸❌
+A real document always has:
+✔️ Official government header and protocol number
+✔️ Stamp and signature
+✔️ The consulate it is sent to
+
+If someone can&#x27;t show you documents like this - don&#x27;t pay and don&#x27;t send your passport 🚫
+
+📌 Save this post to check any offer you get.
+
+⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.
+
+🔒 Personal data hidden for privacy.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #Greece #WorkPermit</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p3"> Выложено</label></div></article><article class="post" id="p4"><div class="num">4</div><div class="body">
+<h3>Офис сегодня</h3><div class="meta">Файлы: office_today.jpg</div>
+<div class="media m1"><figure><img src="fb/img/office_today.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_today.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">💼 Northgate office today - we&#x27;re working 💪📄
+
+How are you? 👋
+Comment 🔥 if you&#x27;re ready for your next job abroad ✈️
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p4"> Выложено</label></div></article><article class="post" id="p5"><div class="num">5</div><div class="body">
+<h3>Вакансия #63 Италия</h3><div class="meta">Файлы: vac_it.jpg</div>
+<div class="media m1"><figure><img src="fb/img/vac_it.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/vac_it.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🏭 VACANCY #63 | Conveyor Line Operators - Italy 🇮🇹
+
+📍 Location: Northern Italy
+🏢 Employer: food packaging factory
+👥 Places: 40
+💰 Salary: €1,200-1,400 / month (net)
+🏠 Accommodation: provided, €150/month deducted from salary
+⏰ Schedule: shifts, 5-6 days/week
+📄 Contract: 1 year+
+
+✅ Requirements:
+• Age: 20-55
+• Factory or packing experience is a plus
+• Basic English
+• Ready for shift work 🔄
+
+⚠️ 40 places - hundreds of candidates. Only the best prepared will be selected.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #JobsInItaly #FactoryJobs</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p5"> Выложено</label></div></article><article class="post" id="p6"><div class="num">6</div><div class="body">
+<h3>Пример документов Италия</h3><div class="meta">Файлы: doc_it2.jpg, doc_it1.jpg · альбом 2 фото</div>
+<div class="media m2"><figure><img src="fb/img/doc_it2.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/doc_it2.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/doc_it1.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/doc_it1.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🇮🇹 Example: Italian work authorization documents 📄
+
+1️⃣ Receipt - the employer&#x27;s application in the Italian Ministry of Interior system
+2️⃣ Letter from the Immigration Office (Sportello Unico) - sent to the Italian Embassy in New Delhi, after which the worker applies for the visa 🛂
+
+⚠️ Know what is real:
+In Italy the process ALWAYS starts with the employer&#x27;s application. No application = no work visa. Anyone promising &quot;Italy visa in 2 weeks&quot; without it is lying ❌
+
+📌 Save this post to check any offer you get.
+
+⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.
+
+🔒 Personal data hidden for privacy.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #Italy #WorkVisa</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p6"> Выложено</label></div></article><article class="post" id="p7"><div class="num">7</div><div class="body">
+<h3>Прилёт 6 ребят</h3><div class="meta">Файлы: pin.jpg</div>
+<div class="media m1"><figure><img src="fb/img/pin.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/pin.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🇮🇳✈️ They made it! 🙌🔥
+
+6 guys from India 🇮🇳 A few months ago they were exactly where you are now - scrolling vacancies and sending CVs 📱📩
+
+They went through the same steps you will:
+📄 CV
+🔍 Selection
+🛂 Documents
+✈️ Flight
+
+Hundreds applied for that job. These 6 were selected ✅
+
+Why them? 🤔
+✔️ Real work experience
+✔️ Documents in order
+✔️ Fast, clear answers
+✔️ No excuses, no delays
+
+Today they are not &quot;looking for a job abroad&quot; anymore. They are here 💪🌍
+
+👉 Next vacancy is coming soon. Get your CV ready now 📄
+🔔 Follow the page - don&#x27;t miss it.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p7"> Выложено</label></div></article><article class="post" id="p8"><div class="num">8</div><div class="body">
+<h3>Офис: день разбора CV</h3><div class="meta">Файлы: office_cv.jpg</div>
+<div class="media m1"><figure><img src="fb/img/office_cv.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_cv.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">📋 CV day at the Northgate office 💼
+
+Today the team is going through new applications one by one 🔍
+
+What we look at first:
+✔️ Real work experience
+✔️ Passport valid 2+ years
+✔️ Clear contact details
+
+💡 A clear CV = a faster answer. Simple 📄
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p8"> Выложено</label></div></article><article class="post" id="p9"><div class="num">9</div><div class="body">
+<h3>Пример визы Польша</h3><div class="meta">Файлы: visa_pl.jpg</div>
+<div class="media m1"><figure><img src="fb/img/visa_pl.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/visa_pl.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🇵🇱 Example: Polish national work visa (type D) 🛂
+
+How to recognise a real one:
+✔️ It is a sticker in the passport, not a paper printout
+✔️ Type &quot;D&quot; - national visa
+✔️ Issued by the Polish consulate
+✔️ Purpose of issue (&quot;CEL WYDANIA&quot;) printed on it
+
+⚠️ Be careful: a Schengen tourist visa is NOT a work visa. Anyone selling &quot;work on a tourist visa&quot; is putting you at risk ❌
+
+📌 Save this post to check any offer you get.
+
+⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.
+
+🔒 Personal data hidden for privacy.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #Poland #WorkVisa</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p9"> Выложено</label></div></article><article class="post" id="p10"><div class="num">10</div><div class="body">
+<h3>Мем «вчера»</h3><div class="meta">Файлы: meme_1.jpg</div>
+<div class="media m1"><figure><img src="fb/img/meme_1.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/meme_1.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">😂 Every recruiter has heard this at least once...
+
+Employers, we love you. But we still need a few weeks for visas 🛂😅
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p10"> Выложено</label></div></article><article class="post" id="p11"><div class="num">11</div><div class="body">
+<h3>#62 Греция закрыта</h3><div class="meta">Файлы: closed_62.jpg</div>
+<div class="media m1"><figure><img src="fb/img/closed_62.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/closed_62.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🔒 VACANCY #62 - CLOSED ✅
+🇬🇷 Farm Workers - Greece
+
+Selection is complete. The group for this employer is formed 👥
+Thank you to everyone who applied 🙏
+
+Didn&#x27;t make it this time? Prepare your CV and documents now 📄
+🔔 Follow the page - new vacancies are coming.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p11"> Выложено</label></div></article><article class="post" id="p12"><div class="num">12</div><div class="body">
+<h3>Вакансия #64 Турция</h3><div class="meta">Файлы: vac_tr.jpg</div>
+<div class="media m1"><figure><img src="fb/img/vac_tr.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/vac_tr.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🏗 VACANCY #64 | Construction Workers - Turkey 🇹🇷
+
+📍 Location: Istanbul
+🏢 Employer: residential construction company
+👥 Places: 35
+💰 Salary: $700-850 / month + overtime
+🏠 Accommodation: provided, shared rooms (4 per room)
+⏰ Schedule: 6 days/week
+📄 Contract: 1 year (extension possible)
+
+✅ Requirements:
+• Age: 20-50
+• Min. 1 year construction experience (mason, steel fixer, helper)
+• Basic English
+• Strong and healthy 💪
+
+⚠️ Only 35 places - hundreds will apply. Experience is checked. We decide who goes.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #JobsInTurkey #ConstructionJobs</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p12"> Выложено</label></div></article><article class="post" id="p13"><div class="num">13</div><div class="body">
+<h3>Пример контракта Турция</h3><div class="meta">Файлы: doc_tr.jpg</div>
+<div class="media m1"><figure><img src="fb/img/doc_tr.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/doc_tr.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🇹🇷 Example: what a real Turkish work contract looks like 📑
+
+✔️ Fixed-term employment contract in Turkish + English
+✔️ Employer details and SGK (social security) workplace number
+✔️ Job title and contract duration clearly written
+✔️ Work permit through the Ministry of Labour
+
+⚠️ Be careful: no contract and no work permit = no legal job. Never go to work &quot;on a tourist visa&quot; - you can be deported 🚫
+
+📌 Save this post to check any offer you get.
+
+⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.
+
+🔒 Personal data hidden for privacy.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #Turkey #WorkPermit</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p13"> Выложено</label></div></article><article class="post" id="p14"><div class="num">14</div><div class="body">
+<h3>Офис: альбом 4 фото</h3><div class="meta">Файлы: office_a1.jpg, office_a2.jpg, office_a3.jpg, office_a4.jpg · альбом 4 фото</div>
+<div class="media m4"><figure><img src="fb/img/office_a1.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_a1.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/office_a2.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_a2.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/office_a3.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_a3.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/office_a4.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_a4.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🏢 A normal working day at the Northgate office
+📍 Sofia, Bulgaria 🇧🇬🇪🇺
+
+📄 Contracts checked line by line
+🔍 CVs reviewed one by one
+📞 Calls with employers across Europe
+
+Our door is open - candidates can visit us in person 🤝
+
+Real office. Real team. Real jobs 💼
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p14"> Выложено</label></div></article><article class="post" id="p15"><div class="num">15</div><div class="body">
+<h3>Прилёт группы (альбом)</h3><div class="meta">Файлы: arrival_a.jpg, arrival_b.jpg · альбом 2 фото</div>
+<div class="media m2"><figure><img src="fb/img/arrival_a.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/arrival_a.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/arrival_b.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/arrival_b.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">✈️ Another group has landed! 🙌
+
+These guys went through our selection, prepared all documents with us and today they start a new chapter 💪🌍
+
+Each of them was chosen from hundreds of applicants 📊 Not luck - preparation, correct documents and the right attitude ✅
+
+👉 This could be you. But only if you are ready.
+
+🔔 New vacancies are coming. Follow the page.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p15"> Выложено</label></div></article><article class="post" id="p16"><div class="num">16</div><div class="body">
+<h3>Мем «посольство»</h3><div class="meta">Файлы: meme_2.jpg</div>
+<div class="media m1"><figure><img src="fb/img/meme_2.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/meme_2.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">💀 Embassy appointment slots be like...
+
+That&#x27;s why we plan every group in advance 📅 Patience = visa ✅
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p16"> Выложено</label></div></article><article class="post" id="p17"><div class="num">17</div><div class="body">
+<h3>#63 Италия закрыта</h3><div class="meta">Файлы: closed_63.jpg</div>
+<div class="media m1"><figure><img src="fb/img/closed_63.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/closed_63.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🔒 VACANCY #63 - CLOSED ✅
+🇮🇹 Conveyor Line Operators - Italy
+
+Selection is complete. The group for this employer is formed 👥
+Thank you to everyone who applied 🙏
+
+Didn&#x27;t make it this time? Prepare your CV and documents now 📄
+🔔 Follow the page - new vacancies are coming.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p17"> Выложено</label></div></article><article class="post" id="p18"><div class="num">18</div><div class="body">
+<h3>Вакансия #65 Беларусь</h3><div class="meta">Файлы: vac_byplt.jpg</div>
+<div class="media m1"><figure><img src="fb/img/vac_byplt.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/vac_byplt.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🐔 VACANCY #65 | Poultry Plant Workers - Belarus 🇧🇾
+
+📍 Location: Minsk region
+🏢 Employer: poultry processing plant
+👥 Places: 25
+💰 Salary: $600-750 / month
+🏠 Accommodation: employer helps, hostel near the plant (small fee)
+⏰ Schedule: shifts, 5 days/week
+📄 Contract: 1 year+
+
+✅ Requirements:
+• Age: 20-50
+• Meat or poultry experience is a big plus
+• Basic English
+• Ready for cold-room work ❄️
+
+⚠️ 25 places only. Strict selection - not everyone will be accepted.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #JobsInBelarus #FactoryJobs</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p18"> Выложено</label></div></article><article class="post" id="p19"><div class="num">19</div><div class="body">
+<h3>Пример визы Беларусь</h3><div class="meta">Файлы: visa_by.jpg, visa_by2.jpg · альбом 2 фото</div>
+<div class="media m2"><figure><img src="fb/img/visa_by.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/visa_by.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/visa_by2.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/visa_by2.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🇧🇾 Example: Belarus visa 🛂
+
+What to check on a real visa:
+✔️ Sticker in the passport with hologram
+✔️ Issued by the Belarus embassy or consulate
+✔️ Visa type, dates and number of entries clearly printed
+
+⚠️ Always check: the name and passport number on the visa must match YOUR passport exactly. One mistake - and you will not be allowed to board ✈️❌
+
+📌 Save this post to check any offer you get.
+
+⚠️ Our selection is strict - we decide who goes, and every step is backed by real documents.
+
+🔒 Personal data hidden for privacy.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #Belarus #WorkVisa</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p19"> Выложено</label></div></article><article class="post" id="p20"><div class="num">20</div><div class="body">
+<h3>Как проходит отбор</h3><div class="meta">Файлы: selection.jpg</div>
+<div class="media m1"><figure><img src="fb/img/selection.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/selection.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🔍 How our selection works
+
+1️⃣ You apply with CV + vacancy code 📄
+2️⃣ Our team checks your experience and documents 🧐
+3️⃣ Shortlist: we contact selected candidates and send a short text questionnaire 📝
+4️⃣ The employer confirms ✅
+5️⃣ Visa and documents 🛂
+6️⃣ Flight and start of work ✈️🏭
+
+⚠️ We can stop the process at any step if something doesn&#x27;t match. The decision is always ours.
+
+💡 Tip: a clear CV with real experience is the fastest way through step 2.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p20"> Выложено</label></div></article><article class="post" id="p21"><div class="num">21</div><div class="body">
+<h3>Офис: только официальные сборы</h3><div class="meta">Файлы: office_fees.jpg</div>
+<div class="media m1"><figure><img src="fb/img/office_fees.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_fees.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">💶 Let&#x27;s talk about money - honestly 🤝
+
+With Northgate you pay only official fees:
+🏛 Government work-permit fee
+🛂 Visa fee of the embassy
+
+That&#x27;s it. No hidden &quot;agent fees&quot;, no &quot;pay first and we will see&quot; ❌
+
+Every payment is backed by an official document 📄
+📍 Our office: Sofia, Bulgaria 🇧🇬🇪🇺
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p21"> Выложено</label></div></article><article class="post" id="p22"><div class="num">22</div><div class="body">
+<h3>Мем «родственники»</h3><div class="meta">Файлы: meme_4.jpg</div>
+<div class="media m1"><figure><img src="fb/img/meme_4.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/meme_4.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">😂 Every family function be like...
+
+Want to give the right answer next time? 😉 Watch our vacancies and send your CV ✈️
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p22"> Выложено</label></div></article><article class="post" id="p23"><div class="num">23</div><div class="body">
+<h3>Вакансия #66 Беларусь</h3><div class="meta">Файлы: vac_byind.jpg</div>
+<div class="media m1"><figure><img src="fb/img/vac_byind.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/vac_byind.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">⚙️ VACANCY #66 | Production Workers - Belarus 🇧🇾
+
+📍 Location: Gomel
+🏢 Employer: industrial manufacturing plant
+👥 Places: 10 only
+💰 Salary: $650-800 / month
+🏠 Accommodation: provided free
+⏰ Schedule: 5 days/week, 8 hours/day
+📄 Contract: 1 year (extension possible)
+
+✅ Requirements:
+• Age: 20-55
+• Factory or machine experience required
+• Basic English
+• Careful, disciplined, reliable 🎯
+
+⚠️ Only 10 places. Hundreds will apply. We select - no exceptions.
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #JobsInBelarus #ProductionJobs</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p23"> Выложено</label></div></article><article class="post" id="p24"><div class="num">24</div><div class="body">
+<h3>Мем «CV понедельник/пятница»</h3><div class="meta">Файлы: meme_3.jpg</div>
+<div class="media m1"><figure><img src="fb/img/meme_3.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/meme_3.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">☕➡️😵 Our team reading CVs: Monday vs Friday
+
+Make our life easier 🙏 Send a clear CV + vacancy code - and you will be noticed faster 📄
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p24"> Выложено</label></div></article><article class="post" id="p25"><div class="num">25</div><div class="body">
+<h3>Офис: приходите к нам</h3><div class="meta">Файлы: office_visit1.jpg, office_visit2.jpg · альбом 2 фото</div>
+<div class="media m2"><figure><img src="fb/img/office_visit1.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_visit1.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/office_visit2.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_visit2.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🤝 Our door is open
+
+📍 Northgate Workforce office - Sofia, Bulgaria 🇧🇬🇪🇺
+
+Want to see who you are working with? Candidates can visit us in person 🏢
+Send us a message before you come - we will book the time for you 📅
+
+A real agency has a real office. Always check that ✅
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p25"> Выложено</label></div></article><article class="post" id="p26"><div class="num">26</div><div class="body">
+<h3>Мем «тебя выбрали»</h3><div class="meta">Файлы: meme_5.jpg</div>
+<div class="media m1"><figure><img src="fb/img/meme_5.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/meme_5.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">🎉 That one message everybody is waiting for...
+
+Hundreds apply - only the selected ones get it. Be ready 💪📄
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p26"> Выложено</label></div></article><article class="post" id="p27"><div class="num">27</div><div class="body">
+<h3>Мем «фейковый агент»</h3><div class="meta">Файлы: meme_6.jpg</div>
+<div class="media m1"><figure><img src="fb/img/meme_6.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/meme_6.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">⚠️ Know the difference!
+
+A real agency never promises a visa &quot;in 3 days&quot;. Real process = selection ➡️ documents ➡️ visa 🛂
+Stay safe 🙏
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p27"> Выложено</label></div></article><article class="post" id="p28"><div class="num">28</div><div class="body">
+<h3>Видео: интервью в аэропорту</h3><div class="meta">Файлы: airport_interview.mp4 · видео</div>
+<div class="media m1"><figure><video src="fb/img/airport_interview.mp4" controls playsinline preload="metadata"></video><a class="dl" href="fb/img/airport_interview.mp4" download>⬇️ Скачать видео</a></figure></div>
+<pre class="t">🎥 Straight from the airport ✈️
+
+Two guys from India 🇮🇳 just landed. Sewing machine operators 🧵 First time working abroad 🌍
+
+We asked them one simple question - what is your dream? 💭
+
+❤️ Help the family
+🏠 Build their own house
+💍 Save for the wedding
+
+Real people. Real contracts. Real start 💪
+Your story can be next 👇
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad #Arrivals</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p28"> Выложено</label></div></article><article class="post" id="p29"><div class="num">29</div><div class="body">
+<h3>ПРИВЕТСТВИЕ - закрепить <span class="pin">ЗАКРЕПИТЬ</span></h3><div class="meta">Файлы: office_welcome.jpg, office_welcome2.jpg · альбом 2 фото</div>
+<div class="media m2"><figure><img src="fb/img/office_welcome.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_welcome.jpg" download>⬇️ Скачать</a></figure><figure><img src="fb/img/office_welcome2.jpg" loading="lazy" alt=""><a class="dl" href="fb/img/office_welcome2.jpg" download>⬇️ Скачать</a></figure></div>
+<pre class="t">👋 Welcome to Northgate Workforce 🇪🇺
+
+We help workers find legal jobs in Europe and beyond ✈️
+
+🏢 Office: Sofia, Bulgaria 🇧🇬🇪🇺
+🌍 Countries: Greece, Italy, Turkey, Belarus, Poland and more
+📄 Real contracts - 1 year and longer
+🛂 Work permit and visa support, step by step
+
+⚠️ How we work:
+One vacancy = 10 to 100 places. Hundreds apply. We check every candidate and we decide who goes. Strict selection - that&#x27;s why employers trust us ✅
+
+👇 How to apply:
+1️⃣ Choose a vacancy on this page
+2️⃣ Send us a message: CV + vacancy code
+3️⃣ Wait for our answer
+
+Age 20-55 · Basic English · Ready to work 💪
+
+━━━━━━━━━━━━━━
+📩 To apply: send us a message with your CV + vacancy code
+📲 All vacancies first in our Telegram: https://t.me/+IcbxNukEGVwyZjA0
+
+#NorthgateWorkforce #JobsInEurope #WorkAbroad</pre><button class="cp">Копировать текст</button><label class="done"><input type="checkbox" data-id="p29"> Выложено</label></div></article>
+</main>
+<script>{
+document.querySelectorAll('button.cp').forEach(b=>b.addEventListener('click',async()=>{
+ const t=b.previousElementSibling.textContent; const old=b.textContent;
+ try{await navigator.clipboard.writeText(t);b.textContent='Скопировано ✓';}catch(e){const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Выделено - нажми Ctrl+C';}
+ b.classList.add('ok');setTimeout(()=>{b.textContent=old;b.classList.remove('ok')},1800);
+}));
+let st={};try{st=JSON.parse(localStorage.getItem('ngfb')||'{}')}catch(e){}
+document.querySelectorAll('.done input').forEach(c=>{const a=c.closest('.post');c.checked=!!st[c.dataset.id];a.classList.toggle('isdone',c.checked);
+ c.addEventListener('change',()=>{st[c.dataset.id]=c.checked;a.classList.toggle('isdone',c.checked);try{localStorage.setItem('ngfb',JSON.stringify(st))}catch(e){}})});
+}</script></body></html>

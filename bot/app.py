@@ -211,6 +211,18 @@ def api_script():
 def files(fn):
     return send_from_directory(os.path.join(CONTENT_DIR, "files"), fn, as_attachment=True)
 
+
+# ---------- public Facebook content pack (marketing material only, no admin actions) ----------
+FB_DIR = os.path.join(CONTENT_DIR, "fb")
+
+@app.get("/fb")
+def fb_index():
+    return send_from_directory(FB_DIR, "index.html")
+
+@app.get("/fb/<path:fn>")
+def fb_files(fn):
+    return send_from_directory(FB_DIR, fn)
+
 @app.get("/img/<path:fn>")
 @auth
 def img(fn):
