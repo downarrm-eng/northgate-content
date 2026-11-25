@@ -63,7 +63,7 @@ async function load(){
     const st=p.status==='published'?'pub':p.status==='error'?'err':p.ready?'ready':'draft'; c[st]++;
     const k=dayKey(t); if(k!==lastDay){lastDay=k;const h=document.createElement('div');h.className='day';h.textContent=k[0].toUpperCase()+k.slice(1);L.appendChild(h)}
     const lbl={pub:'Опубликован',ready:'Ждёт времени',draft:'Черновик',err:'Ошибка'}[st];
-    const imgs=p.images.length?p.images.map(i=>`<img src="/img/${i}" loading="lazy">`).join(''):(p.kind==='poll'?'<div class="noimg">📊 Опрос</div>':'<div class="noimg">Без картинки</div>');
+    const imgs=p.video?`<video src="/img/${p.video}" controls playsinline preload="metadata" style="width:100%;border-radius:8px"></video>`:p.images.length?p.images.map(i=>`<img src="/img/${i}" loading="lazy">`).join(''):(p.kind==='poll'?'<div class="noimg">📊 Опрос</div>':'<div class="noimg">Без картинки</div>');
     const body=p.kind==='poll'?`❓ ${esc(p.poll.question)}\n\n${p.poll.options.map(o=>'• '+esc(o)).join('\n')}`:esc(p.text);
     const el=document.createElement('article'); el.className='post'+(st==='pub'?' published':'');
     el.innerHTML=`<div class="imgcol">${imgs}</div><div class="body">

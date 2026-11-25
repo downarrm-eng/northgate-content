@@ -442,6 +442,34 @@
       "vacancy": null,
       "note": "",
       "already_published": false
+    },
+    {
+      "id": "o3",
+      "title": "Офис - альбом (4 фото)",
+      "publish_at": "2026-11-26T11:30:00+05:30",
+      "kind": "post",
+      "images": [
+        "office3.jpg",
+        "office4.jpg",
+        "office5.jpg",
+        "office6.jpg"
+      ],
+      "vacancy": null,
+      "note": "",
+      "already_published": false,
+      "text": "🏢 A normal working day at the Northgate office\n📍 Sofia, Bulgaria 🇧🇬🇪🇺\n\n📄 Contracts checked line by line\n🔍 CVs reviewed one by one\n📞 Calls with employers across Europe\n\nOur door is open - candidates can visit us in person 🤝\n\nReal office. Real team. Real jobs 💼\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code"
+    },
+    {
+      "id": "vid1",
+      "title": "Видео - интервью в аэропорту (субтитры)",
+      "publish_at": "2026-11-26T14:30:00+05:30",
+      "kind": "post",
+      "images": [],
+      "video": "arrival_video_1.mp4",
+      "vacancy": null,
+      "note": "",
+      "already_published": false,
+      "text": "🎥 Straight from the airport ✈️\n\nTwo guys from India 🇮🇳 just landed. Sewing machine operators 🧵 First time working abroad 🌍\n\nWe asked them one simple question - what is your dream? 💭\n\n❤️ Help the family\n🏠 Build their own house\n💍 Save for the wedding\n\nReal people. Real contracts. Real start 💪\nYour story can be next 👇\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code"
     }
   ]
 }

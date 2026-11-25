@@ -61,7 +61,7 @@ def button(p):
     return json.dumps({"inline_keyboard": [[{"text": label, "url": url}]]})
 
 def tg(method, data=None, files=None):
-    r = requests.post(API + method, data=data, files=files, timeout=60)
+    r = requests.post(API + method, data=data, files=files, timeout=300)
     j = r.json()
     if not j.get("ok"):
         raise RuntimeError(f"{method}: {j.get('description')}")
@@ -75,6 +75,15 @@ def send_post(chat, p):
         poll = p["poll"]
         tg("sendPoll", {"chat_id": chat, "question": poll["question"][:300],
                         "options": json.dumps([{"text": o[:100]} for o in poll["options"]]), "reply_markup": kb})
+        return
+    if p.get("video"):
+        with open(os.path.join(CONTENT_DIR, "img", p["video"]), "rb") as f:
+            data = {"chat_id": chat, "supports_streaming": "true"}
+            if len(text) <= 1024:
+                data.update(caption=text, reply_markup=kb)
+            tg("sendVideo", data, {"video": f})
+        if len(text) > 1024:
+            tg("sendMessage", {"chat_id": chat, "text": text, "reply_markup": kb, "disable_web_page_preview": True})
         return
     if not imgs:
         tg("sendMessage", {"chat_id": chat, "text": text, "reply_markup": kb, "disable_web_page_preview": True})
