@@ -445,19 +445,16 @@
     },
     {
       "id": "o3",
-      "title": "Офис - альбом (4 фото)",
+      "title": "Офис - кандидат в гостях (1 фото)",
       "publish_at": "2026-11-26T11:30:00+05:30",
       "kind": "post",
       "images": [
-        "office3.jpg",
-        "office4.jpg",
-        "office5.jpg",
-        "office6.jpg"
+        "office5.jpg"
       ],
       "vacancy": null,
       "note": "",
       "already_published": false,
-      "text": "🏢 A normal working day at the Northgate office\n📍 Sofia, Bulgaria 🇧🇬🇪🇺\n\n📄 Contracts checked line by line\n🔍 CVs reviewed one by one\n📞 Calls with employers across Europe\n\nOur door is open - candidates can visit us in person 🤝\n\nReal office. Real team. Real jobs 💼\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code"
+      "text": "🏢 Guests at the Northgate office 🤝\n📍 Sofia, Bulgaria 🇧🇬🇪🇺\n\n📄 Contracts checked line by line\n🔍 CVs reviewed one by one\n📞 Calls with employers across Europe\n\nOur door is open - candidates can visit us in person 🤝\n\nReal office. Real team. Real jobs 💼\n\n━━━━━━━━━━━━━━\n✅ Want to apply? Send your CV + vacancy code"
     },
     {
       "id": "vid1",
